@@ -10,11 +10,14 @@ import UIKit
 final class GoodsCollectionViewController: UIViewController {
 	
 	private lazy var goodsCollectionView = makeGoodsCollectionView()
+	private let viewModel = GoodsViewModel()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view.backgroundColor = .black
 		setupUI()
+		
+		viewModel.getItems()
 	}
 
 	override func viewDidLayoutSubviews() {
