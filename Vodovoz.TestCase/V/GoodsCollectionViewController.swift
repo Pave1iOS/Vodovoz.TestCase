@@ -13,7 +13,7 @@ final class GoodsCollectionViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .yellow
+		view.backgroundColor = .black
 		setupUI()
 	}
 
@@ -44,7 +44,7 @@ private extension GoodsCollectionViewController {
 			goodsCollectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 			goodsCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
 			goodsCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-			goodsCollectionView.heightAnchor.constraint(equalToConstant: 200)
+			goodsCollectionView.heightAnchor.constraint(equalToConstant: 150)
 		])
 	}
 }
@@ -55,8 +55,8 @@ private extension GoodsCollectionViewController {
 		let layout = UICollectionViewFlowLayout()
 		let itemWidth = 150
 		let itemHeight = 150
-		let itemSpacing: CGFloat = 20
-		
+		let itemSpacing: CGFloat = 10
+
 		layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 		layout.scrollDirection = .horizontal
@@ -73,7 +73,7 @@ private extension GoodsCollectionViewController {
 		collectionView.translatesAutoresizingMaskIntoConstraints = false
 		
 		#warning("edit backgraund later")
-		collectionView.backgroundColor = .red
+		collectionView.backgroundColor = .white
 		
 		collectionView.delegate = self
 		collectionView.dataSource = self
@@ -96,11 +96,15 @@ extension GoodsCollectionViewController: UICollectionViewDelegate, UICollectionV
 		
 		cell.configure(
 			goodsImage: .milk,
-			goodsPrice: "250 ₽",
+			goodsPrice: "250",
 			goodsLike: false,
 			goodsCart: .shoppingCart
 		)
 		
 		return cell
 	}
+}
+
+#Preview {
+	GoodsCollectionViewController()
 }
