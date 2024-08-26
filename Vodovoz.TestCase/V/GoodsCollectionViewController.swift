@@ -17,7 +17,13 @@ final class GoodsCollectionViewController: UIViewController {
 		view.backgroundColor = .black
 		setupUI()
 		
-		viewModel.getItems()
+		viewModel.reloadData = { [unowned self] in
+			DispatchQueue.main.async { [unowned self] in
+				goodsCollectionView.reloadData()
+			}
+		}
+		
+		viewModel.loadData()
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -88,7 +94,7 @@ private extension GoodsCollectionViewController {
 // MARK: CollectionView Delegate & DataSource
 extension GoodsCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		5
+		return viewModel.goodsCount
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

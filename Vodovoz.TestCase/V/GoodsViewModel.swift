@@ -9,16 +9,34 @@ import Foundation
 
 final class GoodsViewModel {
 	private let networkManager = NetworkManager.shared
+	var reloadData: (() -> Void)?
 	
-	func getItems() {
-		networkManager.fetch(GoodsModel.self, fromURL: VodovozURL.apiUrl) { result in
+	var goodsCount = 0
+	var imageUrls: [String] = []
+	
+	func loadData() {
+		networkManager.fetch(GoodsModel.self, fromURL: VodovozURL.apiUrl) { [unowned self] result in
 			switch result {
 			case .success(let response):
+				Logger.logInfo(message: "Загрузка началась")
 				
-				print(response.message)
-			case .failure(let error):
-				print(error.description)
+				goodsCount = response.goods.count
+				response.goods.map { $0.items.map { $0.detailPicture } }
+				
+				
+				reloadData?()
+				
+				Logger.logSucces(message: "Загрузка выполнена, данные переданы")
+				
+			case .failure:
+				Logger.logError(message: .fetchError)
 			}
 		}
 	}
+	
+	
+}
+
+private extension GoodsViewModel {
+	
 }

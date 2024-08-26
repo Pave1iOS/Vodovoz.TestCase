@@ -40,7 +40,10 @@ final class GoodsCollectionViewCell: UICollectionViewCell {
 	}
 }
 
+// MARK: - Setup View
 private extension GoodsCollectionViewCell {
+	
+	
 	func makeGoodsImage() -> UIImageView {
 		let imageView = UIImageView()
 		
@@ -82,6 +85,7 @@ private extension GoodsCollectionViewCell {
 	}
 }
 
+// MARK: - Setup layout
 private extension GoodsCollectionViewCell {
 	func layout() {
 		contentView.layer.borderColor = UIColor.lightGray.cgColor.copy(alpha: 0.3)
@@ -117,6 +121,7 @@ private extension GoodsCollectionViewCell {
 	}
 }
 
+// MARK: NSAttributedString for price
 private extension GoodsCollectionViewCell {
 	// отображение цены согласно ТЗ
 	func display(price: String, withFontSize size: CGFloat) -> NSAttributedString {
