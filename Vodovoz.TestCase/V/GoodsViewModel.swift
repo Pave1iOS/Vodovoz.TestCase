@@ -12,7 +12,7 @@ final class GoodsViewModel {
 	var reloadData: (() -> Void)?
 	
 	var goodsCount = 0
-	var imageUrls: [String] = []
+	
 	
 	func loadData() {
 		networkManager.fetch(GoodsModel.self, fromURL: VodovozURL.apiUrl) { [unowned self] result in
@@ -21,7 +21,12 @@ final class GoodsViewModel {
 				Logger.logInfo(message: "Загрузка началась")
 				
 				goodsCount = response.goods.count
-				response.goods.map { $0.items.map { $0.detailPicture } }
+				
+				
+				
+//				networkManager.fetch(Items.self, fromURL: pictureURL) { result in
+//					<#code#>
+//				}
 				
 				
 				reloadData?()
